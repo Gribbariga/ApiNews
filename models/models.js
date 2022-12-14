@@ -14,7 +14,6 @@ const News = sequelize.define("News", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   text: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING },
-  date: { type: DataTypes.STRING },
 
   viewing: { type: DataTypes.INTEGER, defaultValue: 0 },
 });
