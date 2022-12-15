@@ -15,7 +15,9 @@ app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
 app.use("/api", router);
 app.get("*", (res) => {
-  res.status(404).send("what???");
+  try {
+    res.status(404).send("what???");
+  } catch (e) {}
 });
 //обработка ошибки
 app.use(errorHandler);
