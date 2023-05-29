@@ -23,12 +23,17 @@ class newsController {
 
   async postNews(req, res, next) {
     try {
-      const { text } = req.body;
+      const { text, title } = req.body;
       const { img } = req.files;
       let fileName = uuid.v4() + ".jpg";
       img.mv(path.resolve(__dirname, "..", "static", fileName));
       const date = new Date();
-      const news = await News.create({ img: fileName, text, date });
+      const news = await News.create({
+        img: fileName,
+        text,
+        date,
+        title: title,
+      });
       return res.json(news);
     } catch (e) {
       next(ApiError.badRequest(e.message));

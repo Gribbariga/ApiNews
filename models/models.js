@@ -12,9 +12,9 @@ const User = sequelize.define("User", {
 
 const News = sequelize.define("News", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  text: { type: DataTypes.STRING },
+  text: { type: DataTypes.STRING(10000) },
+  title: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING },
-
   viewing: { type: DataTypes.INTEGER, defaultValue: 0 },
 });
 
