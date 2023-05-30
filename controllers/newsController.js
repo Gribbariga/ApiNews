@@ -6,6 +6,7 @@ const path = require("path");
 
 class newsController {
   async getNews(req, res) {
+    console.log("?/?");
     try {
       const { id } = req.query;
       const page = req.query.page || 1;
@@ -17,20 +18,6 @@ class newsController {
       }
 
       return res.json(news.rows);
-    } catch (e) {
-      res.json(e.message);
-    }
-  }
-
-  async deleteNews(req, res) {
-    try {
-      const { id } = req.query;
-      News.destroy({
-        where: {
-          id: 1,
-        },
-      });
-      return res.json("success");
     } catch (e) {
       res.json(e.message);
     }
@@ -58,7 +45,7 @@ class newsController {
   async getById(req, res) {
     try {
       const { id } = req.params;
-
+      console.log(id);
       const news = await News.findOne({
         where: { id },
       });
@@ -69,6 +56,31 @@ class newsController {
     } catch (e) {
       res.json(e.message);
     }
+  }
+  async deleteNews(req, res) {
+    try {
+      const { id } = req.params;
+      const news = await News.destroy({
+        where: { id },
+      });
+      News.update({ viewing: viewingUp }, { where: { id } });
+      return res.json("123");
+    } catch (e) {
+      res.json(e.message);
+    }
+    // try {
+    //   console.log(req.query);
+    //   const { id } = req.query;
+    //   console.log("id", id);
+    //   News.destroy({
+    //     where: { id },
+    //   });
+    //   console.log("?");
+    //   return res.json("success");
+    // } catch (e) {
+    //   console.log("!");
+    //   res.json(e.message);
+    // }
   }
 }
 
