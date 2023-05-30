@@ -15,7 +15,22 @@ class newsController {
       if (!id) {
         news = await News.findAndCountAll({ offset, limit });
       }
+
       return res.json(news.rows);
+    } catch (e) {
+      res.json(e.message);
+    }
+  }
+
+  async deleteNews(req, res) {
+    try {
+      const { id } = req.query;
+      News.destroy({
+        where: {
+          id: 1,
+        },
+      });
+      return res.json("success");
     } catch (e) {
       res.json(e.message);
     }
