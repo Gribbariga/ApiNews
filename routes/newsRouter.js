@@ -6,6 +6,6 @@ const checkRole = require("../middleware/checkRoleMiddleware");
 router.post("/", newsController.postNews);
 router.get("/", newsController.getNews);
 router.get("/add:id", newsController.getById);
-router("/delete:id", newsController.deleteNews);
+router.post("/delete:id", newsController.deleteNews);
 
 module.exports = router;
