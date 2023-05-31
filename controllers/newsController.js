@@ -25,13 +25,12 @@ class newsController {
 
   async postNews(req, res, next) {
     try {
-      const { text, title } = req.body;
-      const { img } = req.files;
+      const { text, title, img } = req.body;
       let fileName = uuid.v4() + ".jpg";
-      img.mv(path.resolve(__dirname, "..", "static", fileName));
+      // img.mv(path.resolve(__dirname, "..", "static", fileName));
       const date = new Date();
       const news = await News.create({
-        img: fileName,
+        img: img,
         text,
         date,
         title: title,
