@@ -16,8 +16,7 @@ class newsController {
       if (!id) {
         news = await News.findAndCountAll({ offset, limit });
       }
-
-      return res.json(news.rows);
+      return res.json(news.rows.reverse());
     } catch (e) {
       res.json(e.message);
     }
